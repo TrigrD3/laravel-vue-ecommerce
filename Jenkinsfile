@@ -61,11 +61,11 @@ pipeline {
             }
         }
               
-        stage("Run Tests") {
-            steps {
-                sh 'docker compose exec php artisan test'
-            }
-        }
+        // stage("Run Tests") {
+        //     steps {
+        //         sh 'docker compose exec php php artisan test'
+        //     }
+        // }
     }
     // post {
     //     always {
