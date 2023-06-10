@@ -37,12 +37,27 @@ pipeline {
                 }
             }
         }
-        stage("Run Composer Install") {
+
+        stage("Run Composer Install && update") {
             steps {
                 sh 'docker compose run --rm composer install'
                 sh 'docker compose run --rm composer update'
-                sh 'docker compose run --rm php artisan key:generate'
-                sh 'docker compose run --rm php artisan migrate'
+            }
+        }
+
+        stage("Generate Laravel Key") {
+            steps {
+                script {
+                    sh 'docker compose exec php php artisan key:generate'
+                }
+            }
+        }
+
+        stage("Run Database Migrations") {
+            steps {
+                script {
+                    sh 'docker compose exec php php artisan migrate'
+                }
             }
         }
               
