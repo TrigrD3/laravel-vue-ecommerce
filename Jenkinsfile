@@ -34,7 +34,7 @@ pipeline {
         }
         stage("Populate .env file") {
             steps {
-                dir("/var/lib/jenkins/workspace/envs/module-generator") {
+                dir("/var/lib/jenkins/workspace/envs/laravel-vue") {
                     fileOperations([fileCopyOperation(excludes: '', flattenFiles: true, includes: '.env', targetLocation: "${WORKSPACE}")])
                 }
             }
