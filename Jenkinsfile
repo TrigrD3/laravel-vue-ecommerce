@@ -35,15 +35,18 @@ pipeline {
         stage("Populate .env file") {
             steps {
                 dir("/var/lib/jenkins/workspace/envs/laravel-vue") {
-                    fileOperations([fileCopyOperation(excludes: '', flattenFiles: true, includes: '.env', targetLocation: "${WORKSPACE}")])
+                    script {
+                        sh 'cp .env ${WORKSPACE}'
+                    }
                 }
             }
-        }              
-        // stage("Run Tests") {
-        //     steps {
-        //         sh 'docker compose run --rm artisan test'
-        //     }
-        // }
+        }
+              
+        stage("Run Tests") {
+            steps {
+                sh 'docker compose run --rm artisan test'
+            }
+        }
     }
     // post {
     //     always {
