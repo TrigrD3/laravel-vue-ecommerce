@@ -27,11 +27,7 @@ pipeline {
                 sh 'docker compose ps'
             }
         }
-        stage("Run Composer Install") {
-            steps {
-                sh 'docker compose run --rm composer install'
-            }
-        }
+
         stage("Populate .env file") {
             steps {
                 dir("/var/lib/jenkins/workspace/envs/laravel-vue") {
@@ -39,6 +35,14 @@ pipeline {
                         sh 'cp .env ${WORKSPACE}'
                     }
                 }
+            }
+        }
+        stage("Run Composer Install") {
+            steps {
+                sh 'docker compose run --rm composer install'
+                sh 'docker compose run --rm composer update'
+                sh 'docker compose run --rm php artisan key:generate'
+                sh 'docker compose run --rm php artisan migrate'
             }
         }
               
