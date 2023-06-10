@@ -12,3 +12,5 @@ export USER
 
 up:
 	docker compose up -d
+
+	
