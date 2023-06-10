@@ -63,7 +63,7 @@ pipeline {
               
         stage("Run Tests") {
             steps {
-                sh 'docker compose run --rm artisan test'
+                sh 'docker compose exec php artisan test'
             }
         }
     }
