@@ -61,16 +61,6 @@ pipeline {
             }
         }
 
-        stage("npm install && npm update && npm run build") {
-            steps {
-                script {
-                    sh 'docker compose exec npm npm install'
-                    sh 'docker compose exec npm npm update'
-                    sh 'docker compose exec npm npm run build'
-                }
-            }
-        }
-
         stage("List containers") {
             steps {
                 script {
