@@ -42,8 +42,6 @@ services:
             SERVICE_NAME: mysql
         networks:
             - laravel
-            
-
     php:
         build:
             context: ./dockerfiles
