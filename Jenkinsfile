@@ -24,7 +24,6 @@ pipeline {
         stage("Start Docker") {
             steps {
                 sh 'make up'
-                sh 'docker compose exec npm npm run build'
                 sh 'docker compose ps'
             }
         }
@@ -57,7 +56,7 @@ pipeline {
         stage("Run Database Migrations") {
             steps {
                 script {
-                    sh 'docker compose exec php php artisan migrate'
+                    sh 'docker compose exec php php artisan migrate --seed'
                 }
             }
         }
