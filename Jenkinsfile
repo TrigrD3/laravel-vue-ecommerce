@@ -64,9 +64,9 @@ pipeline {
         stage("npm install && npm update && npm run build") {
             steps {
                 script {
-                    sh 'docker compose exec node npm install'
-                    sh 'docker compose exec node npm update'
-                    sh 'docker compose exec node npm run build'
+                    sh 'docker compose exec npm npm install'
+                    sh 'docker compose exec npm npm update'
+                    sh 'docker compose exec npm npm run build'
                 }
             }
         }
