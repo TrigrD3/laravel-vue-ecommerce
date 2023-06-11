@@ -60,6 +60,14 @@ pipeline {
                 }
             }
         }
+
+        stage("List containers") {
+            steps {
+                script {
+                    sh 'docker compose ps'
+                }
+            }
+        }
               
         // stage("Run Tests") {
         //     steps {
