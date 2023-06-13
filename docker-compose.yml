@@ -43,8 +43,7 @@ services:
         networks:
             - laravel
         volumes:
-            - ./:var/lib/mysql
-        working_dir: /var/lib/mysql
+            - db-data:/var/lib/mysql
 
     php:
         build:
@@ -127,3 +126,6 @@ services:
             - 8025:8025
         networks:
             - laravel
+
+volumes:
+    db-data:
