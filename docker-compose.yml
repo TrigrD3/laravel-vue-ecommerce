@@ -42,6 +42,10 @@ services:
             SERVICE_NAME: mysql
         networks:
             - laravel
+        volumes:
+            - ./:var/lib/mysql
+        working_dir: /var/lib/mysql
+
     php:
         build:
             context: ./dockerfiles
